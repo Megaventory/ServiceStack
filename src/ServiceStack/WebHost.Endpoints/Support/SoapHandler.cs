@@ -177,9 +177,14 @@ namespace ServiceStack.WebHost.Endpoints.Support
         {
             using (var sr = new StreamReader(inputStream))
             {
+                
                 var requestXml = sr.ReadToEnd();
 
-                var doc = new XmlDocument();
+                var doc = new XmlDocument()
+                {
+                    XmlResolver = null
+                };
+
                 doc.LoadXml(requestXml);
 
                 var msg = Message.CreateMessage(new XmlNodeReader(doc), int.MaxValue,

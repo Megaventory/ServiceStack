@@ -176,9 +176,16 @@ namespace ServiceStack.ServiceClient.Web
 
         private static Exception CreateException(Exception e, XmlReader reader)
         {
-            var doc = new XmlDocument();
+
+            var doc = new XmlDocument()
+            {
+                XmlResolver = null
+            };
+
             doc.Load(reader);
+
             var node = doc.SelectSingleNode(XPATH_SOAP_FAULT, GetNamespaceManager(doc));
+
             if (node != null)
             {
                 string errMsg = null;

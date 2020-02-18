@@ -117,7 +117,7 @@ namespace ServiceStack.ServiceInterface
             var sessionOptions = httpReq.GetItemOrCookie(SessionFeature.SessionOptionsKey);
             return sessionOptions.IsNullOrEmpty()
                 ? new HashSet<string>()
-                : sessionOptions.Split(',').ToHashSet();
+                : EnumerableExtensions.ToHashSet(sessionOptions.Split(','));
         }
 
         public static void UpdateSession(this IAuthSession session, UserAuth userAuth)
