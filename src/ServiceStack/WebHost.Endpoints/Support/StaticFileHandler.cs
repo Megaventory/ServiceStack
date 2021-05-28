@@ -117,7 +117,7 @@ namespace ServiceStack.WebHost.Endpoints.Support
                         if (!fi.Exists)
                         {
                             var msg = "Static File '" + request.PathInfo + "' not found.";
-                            log.WarnFormat("{0} in path: {1}", msg, originalFileName);
+                            log.WarnFormat("{0}", msg);
                             throw new HttpException(404, msg);
                         }
                     }
